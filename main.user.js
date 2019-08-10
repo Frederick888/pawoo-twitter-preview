@@ -83,11 +83,8 @@ function fetchTwitterPreviewImage(twitterLink) {
 }
 
 function mainLoop() {
-    document.querySelectorAll('a.status-link[href*="twitter.com"]')
+    document.querySelectorAll('a.status-link[href*="twitter.com"]:not([twitter-processed])')
         .forEach((twitterLink) => {
-            if (twitterLink.getAttribute('twitter-processed') === '1') {
-                return;
-            }
             twitterLink.setAttribute('twitter-processed', '1');
             fetchTwitterPreviewImage(twitterLink);
         });
