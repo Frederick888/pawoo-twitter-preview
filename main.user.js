@@ -16,7 +16,7 @@
 // ==/UserScript==
 
 let galleryTemplate = `
-<div class="media-gallery">
+<div class="media-gallery twitter-preview">
     <div class="media-gallery__item" style="inset: auto; width: 100%; height: 100%;">
         <a class="media-gallery__item-thumbnail" href="" target="_blank">
             <img src="">
@@ -86,7 +86,10 @@ function mainLoop() {
     document.querySelectorAll('a.status-link[href*="twitter.com"]:not([twitter-processed])')
         .forEach((twitterLink) => {
             twitterLink.setAttribute('twitter-processed', '1');
-            fetchTwitterPreviewImage(twitterLink);
+            let container = twitterLink.closest('.status');
+            if (container.querySelector('.media-gallery:not(.twitter-preview)') === null) {
+                fetchTwitterPreviewImage(twitterLink);
+            }
         });
 }
 
