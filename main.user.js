@@ -51,8 +51,8 @@ function fetchTwitterPreviewImage(twitterLink) {
 
             let openGraphImage = responseXML.querySelector('meta[property="og:image"]');
             if (openGraphImage) {
-                console.log(twitterLink);
-                console.log(openGraphImage.getAttribute('content'));
+                // console.log(twitterLink);
+                // console.log(openGraphImage.getAttribute('content'));
                 mediaGallery.querySelector('a.media-gallery__item-thumbnail').setAttribute('href', twitterUrl);
                 let container = twitterLink.closest('.status__content');
                 GM_xmlHttpRequest({
