@@ -15,6 +15,16 @@
 // @grant           GM_xmlHttpRequest
 // ==/UserScript==
 
+let galleryTemplate = `
+<div class="media-gallery">
+    <div class="media-gallery__item" style="inset: auto; width: 100%; height: 100%;">
+        <a class="media-gallery__item-thumbnail" href="" target="_blank">
+            <img src="">
+        </a>
+    </div>
+</div>
+`;
+
 function htmlToElement(html) {
     var template = document.createElement('template');
     html = html.trim(); // Never return a text node of whitespace as the result
@@ -37,15 +47,7 @@ function fetchTwitterPreviewImage(twitterLink) {
         onload: function (response) {
             var responseXML = new DOMParser().parseFromString(response.responseText, "text/html");
 
-            let mediaGallery = htmlToElement(`
-<div class="media-gallery">
-    <div class="media-gallery__item" style="inset: auto; width: 100%; height: 100%;">
-        <a class="media-gallery__item-thumbnail" href="" target="_blank">
-            <img src="">
-        </a>
-    </div>
-</div>
-            `);
+            let mediaGallery = htmlToElement(galleryTemplate);
 
             let openGraphImage = responseXML.querySelector('meta[property="og:image"]');
             if (openGraphImage) {
