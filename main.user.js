@@ -12,6 +12,7 @@
 // @updateURL       https://openuserjs.org/meta/Frederick888/Pawoo_Twitter_Preview.meta.js
 // @match           https://pawoo.net/*
 // @grant           GM.xmlHttpRequest
+// @grant           GM_xmlHttpRequest
 // ==/UserScript==
 
 function htmlToElement(html) {
@@ -23,7 +24,10 @@ function htmlToElement(html) {
 
 function fetchTwitterPreviewImage(twitterLink) {
     let twitterUrl = twitterLink.getAttribute('href');
-    GM.xmlHttpRequest({
+    if (typeof (GM_xmlHttpRequest) === 'undefined' && typeof (GM.xmlHttpRequest) === 'function') {
+        GM_xmlHttpRequest = GM.xmlHttpRequest;
+    }
+    GM_xmlHttpRequest({
         method: 'GET',
         url: twitterUrl,
         headers: {
@@ -49,7 +53,7 @@ function fetchTwitterPreviewImage(twitterLink) {
                 console.log(openGraphImage.getAttribute('content'));
                 mediaGallery.querySelector('a.media-gallery__item-thumbnail').setAttribute('href', twitterUrl);
                 let container = twitterLink.closest('.status__content');
-                GM.xmlHttpRequest({
+                GM_xmlHttpRequest({
                     method: 'GET',
                     url: openGraphImage.getAttribute('content'),
                     headers: {
