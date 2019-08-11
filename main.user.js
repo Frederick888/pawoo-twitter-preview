@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name            Pawoo Twitter Preview
 // @namespace       https://onee3.org
-// @version         0.2.0
+// @version         0.2.1
 // @description     Preview Twitter images in Pawoo
 // @copyright       2019, Frederick888 (https://openuserjs.org/users/Frederick888)
 // @author          Frederick888
