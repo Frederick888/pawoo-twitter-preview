@@ -40,6 +40,7 @@ function fetchTwitterPreviewImage(twitterLink) {
     GM_xmlhttpRequest({
         method: 'GET',
         url: twitterUrl,
+        anonymous: true,
         headers: {
             'User-Agent': 'curl/7.65.3',
             'Accept': '*/*',
@@ -58,6 +59,7 @@ function fetchTwitterPreviewImage(twitterLink) {
                 GM_xmlhttpRequest({
                     method: 'GET',
                     url: openGraphImage.getAttribute('content'),
+                    anonymous: true,
                     headers: {
                         'User-Agent': 'curl/7.65.3',
                         'Accept': '*/*',
